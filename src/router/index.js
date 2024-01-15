@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Inicio from '../views/TareasView.vue'
-import { create } from "core-js/core/object";
+
 
 const router = createRouter({
     history: createWebHistory(),

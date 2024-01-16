@@ -5,7 +5,12 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "db": "start npm run db-script",
+    "users": "start npm run users-script",
+    "db-script": "json-server --watch db.json --port 4000",
+    "users-script": "json-server --watch users.json --port 4002",
+    "start": "concurrently \"npm run serve\" \"npm run db\" \"npm run users\""
   },
   "dependencies": {
     "@formkit/themes": "^1.4.0",

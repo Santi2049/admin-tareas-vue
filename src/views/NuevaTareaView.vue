@@ -2,13 +2,30 @@
 import { FormKit } from '@formkit/vue'
 import RouterLink from '../components/UI/RouterLink.vue'
 import HeadingComp from '../components/UI/HeadingComp.vue'
-import { defineProps } from 'vue'
+import { defineProps, watch, ref  } from 'vue'
 
 defineProps({
   titulo: {
     type: String
   }
 })
+
+const currentDate = ref(getCurrentDate());
+const selectedDate = ref(getCurrentDate());
+
+function getCurrentDate() {
+  const today = new Date();
+  const dd = String(today.getDate()).padStart(2, '0');
+  const mm = String(today.getMonth() + 1).padStart(2, '0'); // Enero es 0!
+  const yyyy = today.getFullYear();
+
+  return `${yyyy}-${mm}-${dd}`;
+}
+
+watch(currentDate, () => {
+  // Actualiza el valor de selectedDate cuando currentDate cambia
+  selectedDate.value = getCurrentDate();
+});
 
 const selectOptions = [
   {value: 'Prioritaria', label: 'Prioritaria'},
@@ -67,9 +84,9 @@ const selectOptions = [
               type="date"
               label="Fecha de entrega"
               name="fecha"
-              validation="date_after:2024-01-12"
+              validation="date_after:2024-01-15"
               :validation-messages="{ date_after: 'La fecha no puede ser anterior a la actual'}"
-              
+              v-model="selectedDate"
           />
 
           <FormKit

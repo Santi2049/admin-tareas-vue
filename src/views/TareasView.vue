@@ -1,6 +1,6 @@
 <script setup>
 import RouterLink from '../components/UI/RouterLink.vue'
-//import HeadingComp from '../components/UI/HeadingComp.vue'
+import HeadingComp from '../components/UI/HeadingComp.vue'
 import { defineProps } from 'vue'
 
 defineProps({
@@ -19,6 +19,8 @@ defineProps({
             Agregar Tarea
         </RouterLink>
         </div>
+
+        <HeadingComp>{{ titulo }}</HeadingComp>
 
         <div class="flow-root mx-auto  mt-10 p-5 bg-white shadow">
       <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">

@@ -34,9 +34,7 @@ const router = createRouter({
             name: 'registrate',
             component: () => import('../views/RegistroView.vue'),
             props: { titulo: 'Registrate' }
-        },
-
-
+        }
     ]
 })
 

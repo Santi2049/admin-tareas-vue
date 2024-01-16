@@ -1,11 +1,22 @@
 <script setup>
+import { FormKit } from '@formkit/vue'
 import RouterLink from '../components/UI/RouterLink.vue'
 import HeadingComp from '../components/UI/HeadingComp.vue'
-</script>
+import { defineProps } from 'vue'
+
+defineProps({
+  titulo: {
+    type: String
+  }
+})
+
 const selectOptions = [
   {value: 'Prioritaria', label: 'Prioritaria'},
   {value: ' No Prioritaria', label: 'No Prioritaria'},
 ]
+
+</script>
+
 <template>
     <div>
         <div class="flex justify-end">
@@ -22,7 +33,7 @@ const selectOptions = [
             type="form"
             submit-label="Agregar Tarea"
             incomplete-message="No se pudo enviar, revisa los mensajes"
-            @submit="handleSubmit"
+            
         >
           <FormKit
               type="text"
@@ -58,7 +69,7 @@ const selectOptions = [
               name="fecha"
               validation="date_after:2024-01-12"
               :validation-messages="{ date_after: 'La fecha no puede ser anterior a la actual'}"
-              v-model="selectedDate"
+              
           />
 
           <FormKit

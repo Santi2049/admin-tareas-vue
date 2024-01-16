@@ -36,13 +36,8 @@ defineProps({
             </tr>
             </thead>
             <tbody class="divide-y divide-gray-200 bg-white">
-              <TareaComp
-                  v-for="tarea in tareasFiltradas"
-                  :key="tarea.id"
-                  :tarea="tarea"
-                  @actualizar-estado="actualizarEstado"
-                  @eliminar-tarea="eliminarTarea"
-              />
+             
+             
             </tbody>
           </table>
         </div>

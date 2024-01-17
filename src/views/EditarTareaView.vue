@@ -1,8 +1,33 @@
 <script setup>
 import { FormKit } from '@formkit/vue'
+import { useRouter, useRoute } from 'vue-router'
+import TareaService from "@/services/TareaService";
+// import TareaServiceUser from "@/services/TareaServiceUser";
 import RouterLink from '../components/UI/RouterLink.vue'
 import HeadingComp from '../components/UI/HeadingComp.vue'
-import { defineProps, watch, ref  } from 'vue'
+import { defineProps, onMounted, reactive, ref, watch} from 'vue'
+import { useStore } from "vuex";
+
+const router = useRouter()
+const route = useRoute()
+const store = useStore()
+
+const idUser = ref(store.state.idUser)
+
+watch(()=> {
+  idUser.value = store.state.idUser
+})
+
+const { id } = route.params
+
+const formData = reactive({})
+
+onMounted(() => {
+  TareaService.obtenerTarea(id)
+      .then(({data}) => {
+        Object.assign(formData, data)
+      })
+})
 
 defineProps({
   titulo: {
@@ -10,33 +35,22 @@ defineProps({
   }
 })
 
-const currentDate = ref(getCurrentDate());
-const selectedDate = ref(getCurrentDate());
-
-function getCurrentDate() {
-  const today = new Date();
-  const dd = String(today.getDate()).padStart(2, '0');
-  const mm = String(today.getMonth() + 1).padStart(2, '0'); // Enero es 0!
-  const yyyy = today.getFullYear();
-
-  return `${yyyy}-${mm}-${dd}`;
-}
-
-watch(currentDate, () => {
-  // Actualiza el valor de selectedDate cuando currentDate cambia
-  selectedDate.value = getCurrentDate();
-});
-
 const selectOptions = [
   {value: 'Prioritaria', label: 'Prioritaria'},
   {value: ' No Prioritaria', label: 'No Prioritaria'},
 ]
 
+const handleSubmit = (data) => {
+  TareaService.actualizarTarea(id, data)
+      .then(() => router.push({name: 'listado-tareas'}))
+      .catch(error => console.log(error))
+}
+
 </script>
 
 <template>
-    <div>
-        <div class="flex justify-end">
+  <div>
+    <div class="flex justify-end">
       <RouterLink to="listado-tareas">
         Volver
       </RouterLink>
@@ -48,9 +62,10 @@ const selectOptions = [
       <div class="mx-auto md:w-2/3 py-20 px-6">
         <FormKit
             type="form"
-            submit-label="Agregar Tarea"
+            submit-label="Guardar Cambios"
             incomplete-message="No se pudo enviar, revisa los mensajes"
-            
+            @submit="handleSubmit"
+            :value="formData"
         >
           <FormKit
               type="text"
@@ -59,6 +74,7 @@ const selectOptions = [
               placeholder="Título de Tarea"
               validation="required"
               :validation-messages="{ required: 'El título de la tarea es Obligatorio'}"
+              v-model="formData.titulo"
           />
 
           <FormKit
@@ -68,6 +84,7 @@ const selectOptions = [
               placeholder="Nombre de a Materia"
               validation="required"
               :validation-messages="{ required: 'El título de la Materia es Obligatorio'}"
+              v-model="formData.materia"
           />
 
           <FormKit
@@ -78,15 +95,16 @@ const selectOptions = [
               placeholder="Nivel de Prioridad"
               validation="required"
               :validation-messages="{ required: 'El Nivel de Prioridad es Obligatorio'}"
+              v-model="formData.prioridad"
           />
 
           <FormKit
               type="date"
               label="Fecha de entrega"
               name="fecha"
-              validation="date_after:2024-01-15"
+              validation="date_after:2024-01-12"
               :validation-messages="{ date_after: 'La fecha no puede ser anterior a la actual'}"
-              v-model="selectedDate"
+              v-model="formData.fecha"
           />
 
           <FormKit
@@ -96,11 +114,12 @@ const selectOptions = [
               placeholder="Especificaciones de la Tarea"
               validation="required"
               :validation-messages="{ required: 'Las especificaciones de la tarea son Obligatorias'}"
+              v-model="formData.specs"
           />
         </FormKit>
       </div>
-</div>
     </div>
+  </div>
 </template>
 
 <style>

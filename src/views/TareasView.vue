@@ -1,6 +1,5 @@
 <script setup>
 import TareaService from "@/services/TareaService";
-// import TareaServiceUser from "@/services/TareaServiceUser";
 import { onMounted, ref, defineProps, computed, watch } from 'vue'
 import RouterLink from '../components/UI/RouterLink.vue'
 import HeadingComp from '../components/UI/HeadingComp.vue'

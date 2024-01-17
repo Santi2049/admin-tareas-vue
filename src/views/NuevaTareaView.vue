@@ -2,6 +2,7 @@
 import { FormKit } from '@formkit/vue'
 import { useRouter } from 'vue-router'
 import TareaService from "@/services/TareaService";
+// import TareaServiceUser from "@/services/TareaServiceUser";
 import RouterLink from '../components/UI/RouterLink.vue'
 import HeadingComp from '../components/UI/HeadingComp.vue'
 import { useStore} from "vuex";
@@ -16,30 +17,30 @@ defineProps({
   }
 })
 
-const currentDate = ref(getCurrentDate())
-const selectedDate = ref(getCurrentDate())
+const currentDate = ref(getCurrentDate());
+const selectedDate = ref(getCurrentDate());
 const isAdmin = ref(store.state.isAdmin)
 const idUser = ref(store.state.idUser)
 
 function getCurrentDate() {
-  const today = new Date()
-  const dd = String(today.getDate()).padStart(2, '0')
-  const mm = String(today.getMonth() + 1).padStart(2, '0') 
-  const yyyy = today.getFullYear()
+  const today = new Date();
+  const dd = String(today.getDate()).padStart(2, '0');
+  const mm = String(today.getMonth() + 1).padStart(2, '0'); // Enero es 0!
+  const yyyy = today.getFullYear();
 
-  return `${yyyy}-${mm}-${dd}`
+  return `${yyyy}-${mm}-${dd}`;
 }
 
 watch(currentDate, () => {
   // Actualiza el valor de selectedDate cuando currentDate cambia
-  selectedDate.value = getCurrentDate()
+  selectedDate.value = getCurrentDate();
   isAdmin.value = store.state.isAdmin
   idUser.value = store.state.idUser
 });
 
 const selectOptions = [
   {value: 'Prioritaria', label: 'Prioritaria'},
-  {value: ' No Prioritaria', label: 'No Prioritaria'}
+  {value: ' No Prioritaria', label: 'No Prioritaria'},
 ]
 
 const handleSubmit = (data) => {
@@ -106,7 +107,7 @@ const handleSubmit = (data) => {
               name="fecha"
               validation="date_after:2024-01-12"
               :validation-messages="{ date_after: 'La fecha no puede ser anterior a la actual'}"
-
+              v-model="selectedDate"
           />
 
           <FormKit

@@ -23,6 +23,14 @@
       "username": "santiherrerodeminecraft",
       "genero": "Masculino",
       "password": "santi"
+    },
+    {
+      "id": "bf85",
+      "nombre": "Alejandro",
+      "apellido": "May",
+      "username": "Alejandro21",
+      "genero": "Masculino",
+      "password": "AlejandroMay21"
     }
   ]
 }

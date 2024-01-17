@@ -29,6 +29,16 @@
       "specs": "si es eso",
       "estado": 0,
       "autor": "fac0"
+    },
+    {
+      "id": "ecc0",
+      "titulo": "Proyecto Extra",
+      "materia": "Desarrollo Wed",
+      "prioridad": "Prioritaria",
+      "fecha": "2024-01-17",
+      "specs": "Estamos por terminar el proyecto del extra",
+      "estado": 0,
+      "autor": "bf85"
     }
   ]
 }

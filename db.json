@@ -1,5 +1,34 @@
 {
-    "tareas": [
-        
-    ]
+  "tareas": [
+    {
+      "id": "6f1b",
+      "titulo": "Extraordinario",
+      "materia": "Desarrollo web",
+      "prioridad": "Prioritaria",
+      "fecha": "2024-01-17",
+      "specs": "Terminando mi proyecto (prueba de editar)",
+      "estado": true,
+      "autor": "0209"
+    },
+    {
+      "id": "bd0a",
+      "titulo": "Tarea prueba",
+      "materia": "prueba",
+      "prioridad": " No Prioritaria",
+      "fecha": "2024-01-27",
+      "specs": "tarea de prueba tu le sabes",
+      "estado": 0,
+      "autor": "0209"
+    },
+    {
+      "id": "fd15",
+      "titulo": "Extraordinarioooooo",
+      "materia": "web",
+      "prioridad": "Prioritaria",
+      "fecha": "2024-01-29",
+      "specs": "si es eso",
+      "estado": 0,
+      "autor": "fac0"
+    }
+  ]
 }

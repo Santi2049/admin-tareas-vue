@@ -1,4 +1,28 @@
 {
-    "usuarios": []
-
+  "usuarios": [
+    {
+      "id": "e7c8",
+      "nombre": "Admin",
+      "apellido": "Admin",
+      "username": "admin",
+      "genero": "Masculino",
+      "password": "admin"
+    },
+    {
+      "id": "0209",
+      "nombre": "Ricardo Abdiel",
+      "apellido": "Chan Novelo",
+      "username": "HUNUXU",
+      "genero": "Femenino",
+      "password": "Hunucu14!"
+    },
+    {
+      "id": "fac0",
+      "nombre": "Santi",
+      "apellido": "Herrera",
+      "username": "santiherrerodeminecraft",
+      "genero": "Masculino",
+      "password": "santi"
+    }
+  ]
 }
